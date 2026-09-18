@@ -4,7 +4,7 @@
 
 ## About Me
 
-[Replace this paragraph with at least three sentences: who you are, why you are learning cybersecurity, and one learning goal for this course. Keep the `## About Me` heading and the rest of this README.]
+My name is Siri Keyaka and I’m a cybersecurity professional with experience in security operations, risk, and compliance. I’m continuing to build my cybersecurity skills to strengthen both my technical foundation and my knowledge of governance, risk, and compliance (GRC). My goal for this course is to expand my hands-on experience through practical labs and projects while building a portfolio that demonstrates my cybersecurity knowledge and problem-solving skills.
 
 This repository documents your hands-on learning through the **CyberVisionaries Institute Cyber Foundations (Tier I)** program.
 
