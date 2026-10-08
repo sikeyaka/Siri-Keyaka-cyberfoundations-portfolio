@@ -284,6 +284,8 @@ If you'd like to add one, take a screenshot showing your commands and their outp
 5. Right-click directly on the image and choose **Copy image address** (Chrome/Edge) or **Copy Image Link** (Firefox).
 6. Come back to this file, open the pencil (edit) icon, and add the embed near the bottom of Part B, pasting your copied link in place of the placeholder:
 
+![CLI Simulator session screenshot](https://raw.githubusercontent.com/sikeyaka/Siri-Keyaka-cyberfoundations-portfolio/86eee58cb48d21a4b276b76c0e95b76d16f53ae5/assets/screenshots/week-03/command-line-navigation.png)
+
 **If right-click doesn't show that option** (e.g., on some trackpads or tablets): click the small download-arrow icon in the top-right of the image preview instead, then copy the URL from your browser's address bar.
 
 ---
