@@ -1,74 +1,45 @@
-# Week 1 — Onboarding
+# Week 1 — Cybersecurity Foundations & Portfolio Onboarding
+
+**Program:** CyberVisionaries Institute | CyberFoundations  
+**Module:** 1 — Digital Infrastructure & CLI  
+**Focus:** Cybersecurity fundamentals, the CIA Triad, career pathways, and GitHub portfolio setup
 
 ---
 
-## Focus
+## Overview
 
-Week 1 has no lab environment and no graded deliverable — your only job this week is to get set up. Six lessons carry the week: What Is Cybersecurity, How This Course Works, What Is GitHub and Why Do You Need It, The CIA Triad, Career Paths in Cybersecurity, and Welcome to CyberFoundations City.
+Week 1 introduces foundational cybersecurity concepts and establishes the GitHub repository used to document coursework, technical exercises, and professional development throughout the 12-week CyberFoundations program.
 
-Lesson 3 is the one that matters most this week — it's where you create your GitHub account and this portfolio repository. Everything you build for the rest of the program lives here, so don't rush it.
+The coursework covers cybersecurity principles, the importance of protecting information systems, career pathways within the field, and the use of GitHub for technical documentation and portfolio development.
 
----
+## Key Topics Covered
 
-## Outcomes
+- **Cybersecurity Fundamentals:** Understanding cybersecurity and its role in protecting systems, networks, and information.
+- **CIA Triad:** Confidentiality, Integrity, and Availability as foundational information security principles.
+- **Cybersecurity Career Pathways:** Exploring different roles and areas of specialization within cybersecurity.
+- **GitHub & Version Control:** Introduction to repositories, README documentation, commits, and maintaining a technical portfolio.
+- **Program Orientation:** Understanding the CyberFoundations learning environment, coursework structure, and lab submission process.
 
-By the end of this week, you'll be able to:
+## Activities & Portfolio Development
 
-- Explain what cybersecurity is and why demand for the field is growing
-- State the three pillars of the CIA Triad (Confidentiality, Integrity, Availability)
-- Describe at least one cybersecurity career path and where this course fits into it
-- Navigate your cohort's Circle space and your Lab Portal Student Dashboard
+- Established a GitHub repository for documenting the CyberFoundations program.
+- Customized the main repository README with a professional introduction and portfolio overview.
+- Practiced GitHub navigation, Markdown documentation, and committing changes.
+- Became familiar with the course learning platform and Lab Portal.
 
----
+## Skills Reinforced
 
-## Environment
-
-There's no lab environment this week — no VM, no cloud environment, no CLI simulator. Everything happens in your browser.
-
-| Component | Details |
+| Area | Concepts & Skills |
 |---|---|
-| Your Repo | This repository — created from `cyberfoundations-student-portfolio-template` |
-| Circle | Your cohort space and lesson content |
-| Lab Portal | Your Student Dashboard (log in with your Microsoft account) |
+| Information Security | Cybersecurity fundamentals and the CIA Triad |
+| Technical Documentation | Markdown formatting and README organization |
+| Version Control | GitHub repositories, commits, and file management |
+| Professional Development | Cybersecurity career exploration and portfolio organization |
+
+## Week 1 Summary
+
+Week 1 establishes the foundational concepts and documentation practices that support the remainder of the program. The GitHub repository serves as a central location for organizing coursework, recording hands-on exercises, and demonstrating continued technical development.
 
 ---
 
-## What You'll Submit
-
-| Item | Location |
-|---|---|
-| First commit: a short intro about yourself | Root [`README.md`](../README.md), under **About Me** directly below the title and **New here?** sentence |
-
-The README introduction is a required onboarding task, not a graded lab. Follow the [Start Here walkthrough](../start%20here/START-HERE.md) for editing, previewing, committing, and verifying it.
-
-Replace only the bracketed paragraph under **About Me** with at least three sentences: who you are, why you are learning cybersecurity, and one learning goal. If your copy has no **About Me** heading, add it directly below the title and **New here?** sentence, above **This repository documents**. Keep all other README content.
-
-The optional Lab Portal practice worksheet saves separately to `week-01/practice-worksheet.md`; it does not update your root README or count toward Week 1 completion.
-
----
-
-## Checklist
-
-- [ ] I created a GitHub account
-- [ ] I created this repo using the green **Use this template** button (not a fork, not built from scratch)
-- [ ] My repo is set to Public
-- [ ] I edited the root `README.md` under **About Me** with at least three sentences about myself, why I am learning cybersecurity, and one learning goal; I committed and reopened the file to verify it
-- [ ] I can access my cohort's Circle space
-- [ ] I can log into the Lab Portal and see my Student Dashboard
-
----
-
-## What "Good" Looks Like
-
-- Your README intro is a few honest, specific sentences — not one line, and not filler. "I'm switching careers from retail management and want to move into a help desk role within a year" works. "Hi, I'm new to cybersecurity" doesn't say much.
-- Your commit message says something about what you changed, instead of leaving GitHub's default message untouched.
-
----
-
-## Connecting to Prior Weeks
-
-There's no prior week — you're just getting started. Everything from Week 2 onward depends on this repo existing and being set up correctly, so if anything above isn't checked off, go back and finish it before Week 2 opens.
-
----
-
-*CyberVisionaries Institute · Cyber Foundations · Tier I*
+*CyberVisionaries Institute | CyberFoundations | Week 1*
