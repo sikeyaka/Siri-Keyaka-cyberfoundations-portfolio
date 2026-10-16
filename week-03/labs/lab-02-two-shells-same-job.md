@@ -5,65 +5,25 @@
 **Date Completed:** 08 October 2026
 
 **Module:** 1 — Digital Infrastructure & CLI | **Week:** 3  
-**Submission Path:** `week-03/labs/lab-02-two-shells-same-job.md`
 
 ---
 
 ## Overview
 
-Welcome to your first Incident Response (IR) assignment in the **Foundry District Storeroom**. A potential unauthorized file access attempt has been flagged in the storeroom files, and you've been asked to investigate it twice, using two command syntaxes: first with bash commands (Pass A), then with PowerShell commands (Pass B). Both passes use an equivalent simulated practice dataset with the same Linux-style folders and files — it is practice data inside the simulator, not a real remote server or a real Windows computer. Your goal is to do the same job with both command styles and compare what you typed and what you saw — the same translation skill from Lesson 2, now applied to a real-feeling scenario instead of just a comparison slide. You'll also log your own findings along the way, using the create-and-organize commands from Lesson 3C — a real investigator never just looks and remembers, they document.
 
-**Nothing here can break anything real.** Same consequence-free CLI Simulator as Lab 01.
+This lab explores command-line investigation techniques using Bash and PowerShell in a simulated incident response scenario. The exercise involves investigating a potential unauthorized access attempt within the Foundry District Storeroom, examining an access log, and creating backup copies of investigation notes.
 
----
+The same investigation is performed in both shells to compare command syntax, output formatting, and file management operations. The exercise reinforces the importance of documenting findings and verifying file locations during security investigations.
 
-## Lab Environment / Pre-Lab Check
+## Lab Environment
 
 | Component | Details |
-|---|---|
-| Environment | CyberFoundations CLI Simulator (browser-based, inside the Lab Portal) |
-| Shells | Both bash **and** PowerShell are required — that's the whole point of this lab |
-| Prerequisite | Lab 01 completed |
-
-**Before you start:** here is how to open this lab's practice area.
-
-1. Sign in to the Lab Portal and open **CLI Simulator** (in the top menu, or the **Open the CLI Simulator** link on the Week 3 page).
-2. Scroll down to the heading **Week 3 Labs**.
-3. For Part A use the box **Foundry District Storeroom — Bash**. For Part B use the box **Foundry District Storeroom — PowerShell**. Each box is its own terminal. There is no separate shell switch — the box decides the shell.
-4. Each box has 6 challenges. Worksheet step A1 matches bash Challenge 1, A2 matches Challenge 2, and so on to A6. Steps B1–B6 match PowerShell Challenges 1–6 the same way.
-
-**How the challenges work.**
-
-- Meet the challenge goal, then press **Next** (or Enter on an empty line). Use **Previous** to look back.
-- **Each challenge loads its own prepared files and its own starting folder.** The terminal still shows your earlier commands, but your location and files reset to that challenge's setup. This is normal — it is not lost work.
-- **Good habit:** at the start of every new challenge, run `pwd`/`Get-Location`, then `ls`/`dir`.
-- The bash box and the PowerShell box each have their own copy of the practice files. Files you create in the bash box do not appear in the PowerShell box — you create them again in Part B.
-- **Restart challenge** gives fresh files for the current challenge and keeps any challenges you already saved.
-- Your worksheet answers are separate from simulator progress — save them on this worksheet page.
-
-**Command reference:** at the top of the CLI Simulator page, click **Command reference**, then search (for example "copy") and filter to **Bash** or **PowerShell**. Its examples use sample names that may not exist in your challenge.
-
----
-
-## 💡 Pro-Tips for Reducing Keyboard Strain
-
-Before you start typing, remember these three professional efficiency "cheat codes":
-
-- **Tab Completion (the autocomplete helper):** type the first few letters of a file or folder name (e.g., `cd arc`) and press **Tab**. If only one name starts with those letters, the simulator fills in the rest, in both boxes. If several names match, it fills in only the part they share (or nothing) — type a few more letters and press Tab again. Tab does not fully work with names that contain spaces; for those, type the full name inside quotes, like `cd "my folder"`.
-- **Up Arrow (the recaller):** if you make a typo, don't retype the whole command — press the **Up Arrow** to recall your last command, use the left/right arrows to fix the typo, and hit **Enter**.
-- **PowerShell aliases:** if typing `Get-Location` or `Get-ChildItem` feels too long, PowerShell lets you use `pwd` as a shortcut for location, and `ls` or `dir` for listing files.
-
----
-
-## 🛠️ Lab Checklist
-
-- [x] Part A: Complete the Bash Pass (bash commands), including creating and backing up your investigation note
-
-- [x] Part B: Complete the PowerShell Pass (PowerShell commands), including creating and backing up your investigation note
-
-- [x] Part C: Side-by-Side Comparison & Reflection
-
-- [x] Analysis Questions: Final Conceptual Review
+| --- | --- |
+| Environment | CyberFoundations CLI Simulator |
+| Shells Used | Bash and PowerShell |
+| Exercise | Foundry District Storeroom |
+| Scenario | Potential unauthorized file access |
+| Focus | File system investigation, log inspection, documentation, and file backups |
 
 ---
 
@@ -113,7 +73,7 @@ Command you ran:
 cd archive/incident-42
 ```
 
-**⚠️ Stop and check:** run your location-check command *immediately* after moving, to confirm you arrived safely.
+**\*\*Location Verification\*\***
 
 Command you ran:
 
@@ -223,7 +183,7 @@ Command you ran:
 Set-Location archive/incident-42
 ```
 
-**⚠️ Stop and check:** run your location-check command *immediately* after moving, to confirm you arrived safely.
+**\*\*Location Verification\*\***
 
 Command you ran:
 
@@ -291,7 +251,6 @@ Mode                 Name
 
 ### Step C1 — The Command Comparison Table
 
-Fill in the exact commands you typed for each task. Do not use generic names — list what you actually executed.
 
 | Task / Question | Bash Command (Bash Pass) | PowerShell Command (PowerShell Pass) |
 | --- | --- | --- |
@@ -300,8 +259,6 @@ Fill in the exact commands you typed for each task. Do not use generic names —
 | 3. Move into a folder | cd archive/incident-42 | Set-Location archive/incident-42 |
 | 4. Peek inside a file | cat access-log.txt | Get-Content access-log.txt |
 | 5. Create + back up your note | touch investigation-notes.txt; cp investigation-notes.txt investigation-notes-backup.txt | New-Item investigation-notes.txt -ItemType File; Copy-Item investigation-notes.txt investigation-notes-backup.txt |
-
-**⚠️ Stop and check:** did both passes use `/home/agent/archive/incident-42` and `access-log.txt`? If not, go back to the matching PowerShell challenge (use **Previous**) and redo it in that folder before continuing.
 
 ### Step C2 — Output Differences Reflection
 
@@ -341,36 +298,12 @@ One difference I observed was that Bash used shorter commands like `pwd`, `ls`, 
 
 ---
 
-## Submission Checklist
+## Lab Summary
 
-- [x] Part A completed entirely in bash (Steps A1–A6, all commands and output recorded)
+Completed equivalent investigation tasks in Bash and PowerShell, including navigating directories, examining an access log, creating investigation notes, and backing up files.
 
-- [x] Location re-checked immediately after the Part A move (Step A3), not just at the end
-
-- [x] Investigation note created and backed up in Part A (Steps A5–A6)
-
-- [x] Part B completed entirely in PowerShell, on the same folder/file as Part A (Steps B1–B6)
-
-- [x] Location re-checked immediately after the Part B move (Step B3)
-
-- [x] Investigation note created and backed up in Part B, with the same filenames as Part A (Steps B5–B6)
-
-- [x] Comparison table filled in with actual commands, not placeholders (Part C, Step C1)
-
-- [x] Output-differences reflection written (Part C, Step C2 — minimum 2 sentences)
-
-- [x] All three Analysis Questions answered (minimum sentence counts met)
-
-- [x] This file is committed to your portfolio repo at `week-03/labs/lab-02-two-shells-same-job.md`
+The exercise demonstrated how different command-line tools can accomplish the same investigative objectives while presenting information through different command syntax and output formats.
 
 ---
 
-## GitHub Commit Subsection
-
-Same mechanism as Lab 01: fill out this lab's worksheet in the **CyberFoundations Lab Portal** (Week 3 → Lab 02) and click **Submit to GitHub** — the Portal commits the completed file to `week-03/labs/lab-02-two-shells-same-job.md` automatically. No manual typing or commit needed.
-
-**📌 Optional:** a CLI Simulator session screenshot can be added the same way as Lab 01 — upload to `assets/screenshots/week-03/`, then right-click the uploaded image and choose **Copy image address**/**Copy Image Link** to embed it — but it isn't required and won't affect your grade.
-
----
-
-*CyberVisionaries Institute · Cyber Foundations · Tier I*
+*CyberVisionaries Institute | CyberFoundations | Week 3*
