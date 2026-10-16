@@ -1,75 +1,50 @@
-# Week 2 — Cybersecurity Landscape & Digital Infrastructure Overview
+# Week 2 — Cybersecurity Landscape & Digital Infrastructure
 
----
+**Program:** CyberVisionaries Institute | CyberFoundations  
+**Module:** 1 — Digital Infrastructure & CLI  
+**Focus:** Cybersecurity landscape, computer architecture, operating systems, and hardware-software interaction
 
-## Focus
+## Overview
 
-Week 2 opens Module 1 — Digital Infrastructure & CLI. Three lessons carry the week: The Cybersecurity Landscape, What's Inside a Computer, and Operating Systems at a Glance. Your lab has one part: identify your CyberFoundations City district for this module, then build and explain a diagram of how hardware, an operating system, and software interact.
+Week 2 explores the cybersecurity landscape and introduces the fundamental components of computer systems. The coursework focuses on understanding how hardware, operating systems, and software interact to support everyday computing and provide the foundation for secure information systems.
 
-**No terminal or CLI this week** — that starts in Week 3.
+The week also introduces the CyberFoundations City framework, connecting the technical concepts covered in Module 1 to a broader cybersecurity learning environment.
 
----
+## Key Topics Covered
 
-## Outcomes
+- **Cybersecurity Landscape:** Understanding the cybersecurity field, its core functions, and the role of foundational technical knowledge.
+- **Computer Hardware:** Identifying physical components such as processors, memory, storage devices, and network interfaces.
+- **Operating Systems:** Understanding how operating systems manage hardware resources and provide an environment for applications.
+- **Software Applications:** Exploring how applications interact with operating systems and underlying hardware.
+- **System Architecture:** Examining the relationship between hardware, operating systems, and software within a functioning computer system.
 
-By the end of this week, you'll be able to:
+## Activities & Portfolio Development
 
-- Describe the cybersecurity landscape and where this course fits in it
-- Name the three layers of a computer system — hardware, operating system, software — and give an example of each
-- Explain, in your own words, how those three layers interact
-- Connect this week's material to the correct CyberFoundations City district
+- Explored the CyberFoundations City framework and identified the district associated with Module 1.
+- Identified examples of hardware, operating systems, and software.
+- Created a diagram illustrating how the three layers of a computer system interact.
+- Explained the relationship between these components using practical computing examples.
+- Examined system specifications and running processes to connect technical concepts with a real computing environment.
 
----
+## Lab Documentation
 
-## Environment
+| Lab | Description |
+| --- | --- |
+| [Lab 01 — Hardware, OS & Software Diagram](labs/lab-01-hardware-os-software-diagram.md) | Visual representation and explanation of how hardware, operating systems, and software interact. |
+| [Lab 02 — Machine Exploration](labs/lab-02-machine-exploration.md) | Examination of system specifications, resource utilization, and active processes using built-in operating system tools. |
 
-No VM or cloud environment this week. Weeks 2–4 use the browser-based Lab Portal — no local install required.
+## Skills Reinforced
 
-| Component | Details |
-|---|---|
-| Environment | Lab Portal, Module 1 orientation |
-| Required Materials | CyberFoundations City map; a diagram tool of your choice (hand-drawn and photographed, or digital) |
+| Skill Area | Practical Application |
+| --- | --- |
+| Computer Architecture | Identifying and explaining core computer system components |
+| Operating Systems | Understanding resource management and application support |
+| System Analysis | Examining hardware specifications and system activity |
+| Technical Documentation | Creating diagrams and explaining technical relationships |
+| Cybersecurity Foundations | Connecting digital infrastructure concepts to information security |
 
-**Prerequisite:** This repo, created from the student template in Week 1. The `week-02/` folder is already here — you don't need to create it.
+## Week 2 Summary
 
----
+Week 2 strengthens the understanding of digital infrastructure by connecting cybersecurity concepts with the underlying components of computer systems. Through system diagrams and hands-on exploration, the coursework reinforces how hardware, operating systems, and software work together to support computing operations.
 
-## What You'll Submit
-
-| Deliverable | Location |
-|---|---|
-| Lab 01 — Hardware/OS/Software Diagram | `week-02/labs/lab-01-hardware-os-software-diagram.md` |
-
-This is a single-lab week — there's no GitHub-graded deliverable. Your first graded deliverable is Week 4.
-
----
-
-## Checklist
-
-- [ ] Completed the Lab Portal Module 1 orientation
-- [ ] Identified my CyberFoundations City district and explained why it fits
-- [ ] Listed a specific example for each layer: hardware, OS, software
-- [ ] Sketched my diagram and embedded it using a relative path (not an absolute path from my computer)
-- [ ] Explained my diagram in my own words (not a copied definition)
-- [ ] Answered all three Analysis Questions (minimum sentence counts met)
-- [ ] Answered all three Lab Report Questions in complete sentences
-- [ ] Committed `lab-01-hardware-os-software-diagram.md` to my portfolio repo
-
----
-
-## What "Good" Looks Like
-
-- Your diagram explanation traces a real example all the way through — "My browser (software) sends a request that the OS routes through the network driver, which depends on the network card (hardware) actually being present and working" — instead of a generic "software uses the OS which uses hardware."
-- Your Analysis Question 1 answer explains that hardware persists but is inert without the OS, and software can't run without the OS — not just "everything stops."
-- Your district identification connects the district's theme to Module 1's actual content, not just a name pulled off the map.
-
----
-
-## Connecting to Prior Weeks
-
-- **Week 1** — You'll use the CyberFoundations City map (introduced in Lesson 6) for the first time this week to place your own work.
-- **Week 3** — OS fundamentals deep dive builds directly on the OS layer you're introducing here at a surface level.
-
----
-
-*CyberVisionaries Institute · Cyber Foundations · Tier I*
+These concepts establish a foundation for the command-line exercises and operating system administration topics introduced in Week 3.
