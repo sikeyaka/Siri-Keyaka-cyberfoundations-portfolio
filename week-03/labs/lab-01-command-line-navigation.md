@@ -11,38 +11,18 @@
 
 ## Overview
 
-Lesson 3 introduced your first five commands — finding where you are, looking around, moving through folders, peeking inside a file, and asking for help — in both bash and PowerShell. This lab has you apply those same five commands to a brand-new practice area inside the CLI Simulator, on your own, then connect what you find back to the file-system tree you learned to read in Lessons 1 and 2.
+This lab introduces foundational command-line navigation using the CyberFoundations CLI Simulator. The exercise focuses on identifying the current directory, exploring folder structures, navigating between directories, reading file contents, and accessing command documentation.
 
-**Nothing here can break anything real.** The CLI Simulator is a consequence-free practice space — if you type something wrong, the worst outcome is an error message telling you so.
+The activities demonstrate how basic command-line tools support file system navigation and information retrieval, skills applicable to system administration and cybersecurity investigations.
 
----
-
-## Lab Environment / Pre-Lab Check
+## Lab Environment
 
 | Component | Details |
-|---|---|
-| Environment | CyberFoundations CLI Simulator (browser-based, inside the Lab Portal) — no install, no VM, no real terminal required |
-| Shell | Your choice — bash or PowerShell. Try the same steps in both if you want extra practice; only one is required |
-| Prerequisite | Lessons 1, 2, and 3 completed |
-
-**Before you start:** here is how to open this lab's practice area.
-
-1. Sign in to the Lab Portal and open **CLI Simulator** (in the top menu, or the **Open the CLI Simulator** link on the Week 3 page).
-2. Scroll down to the heading **Week 3 Labs**.
-3. Pick **one** box: **Foundry District Shift Log — Bash** or **Foundry District Shift Log — PowerShell**. Each box is its own terminal. There is no separate shell switch — the box you pick decides the shell.
-4. Click inside the terminal and type your commands there.
-
-**How the challenges work.**
-
-- The box shows **Challenge 1 of 6**, **Challenge 2 of 6**, and so on. Each worksheet step below tells you which challenge it matches.
-- Read the challenge goal, type commands until it is met, then press **Next** (or press Enter on an empty line). Use **Previous** any time to look back at an earlier challenge.
-- **Each challenge loads its own prepared files and its own starting folder.** The terminal still shows your earlier commands, but your location and files reset to that challenge's setup. This is normal — it is not lost work.
-- **Good habit:** at the start of every new challenge, run `pwd` (bash) or `Get-Location` (PowerShell), then `ls` (bash) or `dir` (PowerShell), so you know where you are and what is there.
-- **Restart challenge** gives you fresh files for the current challenge. It does **not** remove challenges you already completed and saved.
-- Only commands that run without an error count toward a challenge. If you see an error, read it and try again.
-- The simulator saves your challenge progress. Your worksheet answers are separate — save them on this worksheet page.
-
-**Command reference:** at the top of the CLI Simulator page, click **Command reference** to open it. You can search by command name or by task (for example "list" or "help") and filter to **Bash** or **PowerShell**. Its examples use sample file names that may not exist in your challenge — always check with `ls`/`dir` first.
+| --- | --- |
+| Environment | CyberFoundations CLI Simulator |
+| Shell Used | Bash |
+| Exercise | Foundry District Shift Log |
+| Focus | File system navigation, file inspection, and command documentation |
 
 ---
 
@@ -236,58 +216,13 @@ Compare this lab to Lesson 1's filing-room analogy (the pile of paper vs. the la
 ```
 Navigating the file system reminded me of the filing-room analogy because each folder organizes information into a specific location, similar to labeled cabinets. What stood out to me was how much I could do using just a few commands without opening folders manually. It was also interesting to see how the file path changed as I moved between directories, making the folder structure easier to understand.
 ```
+---
+## Lab Evidence
+
+The screenshot below documents the Bash commands executed during the Foundry District Shift Log exercise, including directory navigation, file inspection, and command help.
+
+![CLI Simulator session screenshot](../../assets/screenshots/week-03/command-line-navigation.png)
 
 ---
 
-## Submission Checklist
-
-- [x] Starting location recorded using `pwd`/`Get-Location` (Part A, Step 1)
-
-- [x] Folder contents listed using `ls`/`dir` (Part A, Step 2)
-
-- [x] Prediction written down before moving (Part A, Step 3)
-
-- [x] Moved into a folder using `cd` and confirmed the new location with `pwd`/`Get-Location` **immediately after** the move, not just at the end (Part B, Steps 1–2)
-
-- [x] Found and read a text file using `cat`/`type` (Part B, Steps 3–4)
-
-- [x] Moved back up using `cd ..` and confirmed with `pwd`/`Get-Location` (Part B, Step 5)
-
-- [x] Looked up an unfamiliar command using `--help`, `man`, or `Get-Help` and recorded what it does (Part C)
-
-- [x] All four Analysis Questions answered (minimum sentence counts met)
-
-- [x] This file is committed to your portfolio repo at `week-03/labs/lab-01-command-line-navigation.md`
-
----
-
-## GitHub Commit Subsection
-
-This lab's written answers are submitted the same way as Week 2's: through the **CyberFoundations Lab Portal**, not by typing directly into GitHub.
-
-1. Go to the CyberFoundations Lab Portal and sign in with your student Microsoft account.
-2. Open **Week 3 → Lab 01: Navigate Your First File System**.
-3. Fill in the worksheet fields — they match the commands, outputs, and questions in this file.
-4. Connect your GitHub account if you haven't already (one-time setup), and select your portfolio repo.
-5. Click **Submit to GitHub**. The Portal commits the completed file to `week-03/labs/lab-01-command-line-navigation.md` for you — no manual typing or commit needed for this part.
-
-**Three different things — do all that apply:** finishing the simulator challenges saves your challenge progress; **Submit to GitHub** on this worksheet sends your written answers to your repo; logging the lab in the separate lab tracker is its own step (see the Week 3 Submissions Guide).
-
-**📌 Optional — add a screenshot for your portfolio.** This entire step is optional. Skipping it will **not** affect your grade — it's a nice-to-have addition to your portfolio, not a requirement. Only do this if you'd like a visual record of your CLI Simulator session.
-
-If you'd like to add one, take a screenshot showing your commands and their output, then:
-
-1. Go to your portfolio repository on GitHub.com and navigate to `assets/screenshots/week-03/`.
-2. Click **Add file → Upload files**, drag in your screenshot, and give it a descriptive name (lowercase, hyphens, no spaces — e.g. `cli-simulator-session.png`).
-3. Scroll down and click **Commit changes**.
-4. Click on the uploaded image's filename to open it — you'll see the image itself displayed on the page.
-5. Right-click directly on the image and choose **Copy image address** (Chrome/Edge) or **Copy Image Link** (Firefox).
-6. Come back to this file, open the pencil (edit) icon, and add the embed near the bottom of Part B, pasting your copied link in place of the placeholder:
-
-![CLI Simulator session screenshot](https://raw.githubusercontent.com/sikeyaka/Siri-Keyaka-cyberfoundations-portfolio/86eee58cb48d21a4b276b76c0e95b76d16f53ae5/assets/screenshots/week-03/command-line-navigation.png)
-
-**If right-click doesn't show that option** (e.g., on some trackpads or tablets): click the small download-arrow icon in the top-right of the image preview instead, then copy the URL from your browser's address bar.
-
----
-
-*CyberVisionaries Institute · Cyber Foundations · Tier I*
+*CyberVisionaries Institute · Cyber Foundations · Week 3*
