@@ -1,20 +1,15 @@
-# Week 1 Notes — Onboarding
+# Week 1 Notes — Cybersecurity Foundations
 
-## Key Concepts This Week
+## Key Concepts
 
-- What cybersecurity is and why demand for these skills is growing
-- The CIA Triad — Confidentiality, Integrity, Availability
-- Career paths in cybersecurity and where this course fits
-- What GitHub is, and why a portfolio repo matters for your career
-- The CyberFoundations City map — your guide to the next 11 weeks
+- **Cybersecurity:** Protecting systems, networks, and data from unauthorized access, attacks, and disruption.
+- **CIA Triad:** Three foundational principles of information security:
+  - **Confidentiality:** Ensuring information is accessible only to authorized individuals.
+  - **Integrity:** Maintaining the accuracy and trustworthiness of information.
+  - **Availability:** Ensuring systems and information remain accessible when needed.
+- **Cybersecurity Career Paths:** Security Operations (SOC), Incident Response, Governance, Risk & Compliance (GRC), and other security specializations.
+- **GitHub & Version Control:** Using repositories, Markdown, and commits to organize technical documentation and track changes.
 
-## In My Own Words
+## Key Takeaway
 
-**What is the CIA Triad, in your own words?**
-
-
-**Which cybersecurity career path interests you most right now, and why?**
-
-
-**One term I want to remember from this week, and why:**
-
+The CIA Triad provides a foundation for understanding cybersecurity risks and evaluating security controls. GitHub supports professional development by providing a structured way to document technical work and demonstrate practical skills.
