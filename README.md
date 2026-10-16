@@ -1,87 +1,100 @@
-# CyberVisionaries Institute (CVI) — Cyber Foundations Student Portfolio
 
-**New here? Read [START-HERE.md](start%20here/START-HERE.md) first — it walks you through your very first commit, step by step.**
+# CyberFoundations Portfolio | Siri Keyaka
 
-## About Me
+**Security Operations | Incident Response | Governance, Risk & Compliance**
 
-My name is Siri Keyaka and I’m a cybersecurity professional with experience in security operations, risk, and compliance. I’m continuing to build my cybersecurity skills to strengthen both my technical foundation and my knowledge of governance, risk, and compliance (GRC). My goal for this course is to expand my hands-on experience through practical labs and projects while building a portfolio that demonstrates my cybersecurity knowledge and problem-solving skills.
+Welcome to my CyberFoundations portfolio! I'm a cybersecurity professional with experience in security operations, threat investigation, risk management, and compliance.
 
-This repository documents your hands-on learning through the **CyberVisionaries Institute Cyber Foundations (Tier I)** program.
+My professional background includes working in a Security Operations Center (SOC), investigating security alerts, analyzing security telemetry, documenting findings, and escalating potential threats using Microsoft Defender XDR, Microsoft Sentinel, and Kusto Query Language (KQL).
 
-This is your working portfolio — **not the instructor repository.** All lesson content and lab instructions live here, in your own repo — you never need to pull anything from an instructor repo.
+I hold the **CompTIA Security+ CE**, **CompTIA Tech+**, and **Microsoft SC-200** certifications and am currently preparing for the **CompTIA CySA+** certification.
 
-New to GitHub in general (not just this repo)? See the [CVI GitHub Handbook](https://github.com/CyberVisionariesInstitute/cvi-cohort-handbook) for accounts, key terms, and how templates work.
+## About This Portfolio
 
-## 1. Repository Purpose
+This repository documents my continued technical development through the **CyberVisionaries Institute (CVI) Cyber Foundations program**, a 12-week hands-on cybersecurity training program.
 
-This repository is:
+It includes practical exercises, technical documentation, lab screenshots, and reflections demonstrating my approach to cybersecurity concepts and problem-solving.
 
-1. A structured lab documentation workspace
-2. A technical reflection journal
-3. A growing cybersecurity portfolio
-4. Evidence of hands-on capability you can show an employer
+My goal is to connect foundational technical knowledge with real-world security operations, incident investigation, and risk management practices.
 
-Everything committed here should reflect professional standards — this is the first thing a hiring manager might look at.
+## Cyber Foundations — 12-Week Curriculum Overview
 
-## 2. Repository Structure
+The CVI Cyber Foundations program follows a progressive, hands-on curriculum covering computer infrastructure, networking, cloud environments, cryptography, access management, and technical documentation.
 
-Each week has its own folder:
+| Module | Weeks | Curriculum Focus |
+|---|---|---|
+| **Module 1 — Digital Infrastructure & CLI** | 1–4 | Cybersecurity fundamentals, computer hardware, operating systems, Windows/Linux environments, Bash and PowerShell, file permissions, command-line investigations, and virtualization concepts |
+| **Module 2 — Networking & Cloud Foundations** | 5–7 | IP addressing, DNS, DHCP, ports, SSH, cloud infrastructure, firewalls, security groups, and network security |
+| **Module 3 — Digital Trust & Cryptography** | 8–9 | Encryption concepts, cryptographic keys, SSH key management, TLS certificates, and digital trust |
+| **Module 4 — Security Fundamentals & IAM** | 10–11 | Risk and threat analysis, identity and access management (IAM), Active Directory fundamentals, and access-control decisions |
+| **Capstone — Portfolio & Technical Communication** | 12 | Organizing technical evidence, communicating findings, and presenting completed work through a final portfolio deliverable |
 
-```
-week-0X/
-├── README-week0X-root.md      (that week's overview, outcomes, and checklist)
-├── notes.md                    (key concepts, in your own words)
-├── reflection.md                (weekly reflection)
-└── labs/
-    ├── README-week0X-submissions.md   (submission guide for that week's lab(s))
-    └── lab-0X-[name].md                (the actual lab file(s))
-```
+### Hands-On Learning Approach
 
-Plus two shared top-level folders used across every week:
+The program incorporates practical labs, simulated Bash and PowerShell environments, virtual machine exercises, technical documentation, and module assessments.
 
-- `projects/` — mini-projects and the Week 12 capstone
-- `assets/` — screenshots, diagrams, and supporting images (organized by week, e.g. `assets/screenshots/week-02/`)
+Selected weeks include larger deliverables that bring together multiple technical concepts into documented projects.
 
-**Weeks 1 and 2 are already built for you** — `week-01/` and `week-02/` are already in this repo, ready to fill in. From Week 3 on, you create the next `week-0X/` folder yourself, matching this exact structure (`README-week0X-root.md`, `notes.md`, `reflection.md`, `labs/README-week0X-submissions.md`, `labs/lab-0X-....md`). No one hands you a `week-03` template — matching a convention consistently on your own is part of what's being evaluated.
+**Current progress:** Modules and completed lab submissions are added to this repository as coursework progresses. Future curriculum topics are listed for context and do not represent completed work.
 
-## 3. Embedding Screenshots (Relative Paths Only)
+## Technical Skills & Areas of Focus
 
-When documenting labs, you'll often include screenshots of terminal output, certificate details, or command results.
+| Area | Tools & Concepts |
+|---|---|
+| Security Operations | Alert triage, investigation, incident documentation, escalation |
+| Security Monitoring | Microsoft Defender XDR, Microsoft Sentinel, KQL |
+| Command-Line Operations | Bash, PowerShell, file navigation, permissions, searching |
+| Systems & Infrastructure | Operating systems, hardware, virtualization concepts |
+| Governance & Risk | Security controls, risk assessments, compliance documentation |
+| Certifications & Training | CompTIA Security+ CE, CompTIA Tech+, Microsoft SC-200, CySA+ preparation |
 
-**Step 1 — Store screenshots properly.** All screenshots go in `assets/screenshots/week-0X/` (adjust the week number). Don't store screenshots in the root directory.
+## Explore My Hands-On Work
 
-**Step 2 — Embed using a relative path.** From a file in `week-0X/labs/`, reference an image like this:
+The portfolio is organized by week, with technical labs, supporting screenshots, and written documentation.
 
-```markdown
-![Description](../../assets/screenshots/week-0X/filename.png)
-```
+| Week | Focus | Explore |
+|---|---|---|
+| Week 01 | Cybersecurity foundations and GitHub introduction | [View Week 01](week-01/) |
+| Week 02 | Computer systems, hardware, and operating systems | [View Week 02](week-02/) |
+| Week 03 | Bash and PowerShell command-line fundamentals | [View Week 03](week-03/) |
+| Week 04 | File permissions, search investigations, and virtual machines | [View Week 04](week-04/) |
 
-**Do NOT use:**
-- Absolute file paths from your computer (e.g. `C:\Users\YourName\Desktop\image.png`)
-- Drag-and-drop links that reference your local machine
-- Public URL links unless explicitly instructed
+*Additional labs and projects will be added as the program progresses.*
 
-If your image doesn't render, your path is incorrect — fix it before submitting.
+## Featured Technical Exercises
 
-## 4. Weekly Workflow
+### Command-Line Exploration — Week 03
 
-1. Review that week's `README-week0X-root.md` for the overview, outcomes, and checklist
-2. Complete the lab in the Lab Portal — for lab weeks, submitting there writes your work directly into `week-0X/labs/`. You can also open the file there and fill it in yourself.
-3. Summarize key concepts in your own words in `week-0X/notes.md`
-4. Submit your reflection in `week-0X/reflection.md`
-5. Commit with a clear, professional message — see that week's `labs/README-week0X-submissions.md` for exact commit instructions
+Practicing Bash and PowerShell commands to navigate file systems, manage files and directories, and investigate information in simulated environments.
 
-## 5. Document Standards
+[Explore Week 03](week-03/)
 
-Every entry should demonstrate:
+### File Permissions & Archive Investigation — Week 04
 
-1. Clear technical reasoning
-2. Structured thinking
-3. Concise explanations
-4. Professional tone
+Exploring file access permissions, command-line searching, and investigative workflows through structured lab scenarios.
 
-Avoid vague summaries, copying definitions without understanding them, and single-word commit messages.
+[Explore Week 04](week-04/)
 
-## About CVI
+### Virtual Machine Configuration — Week 04
 
-CyberVisionaries Institute builds sustainable, demonstrable technical capability in cybersecurity through structured training and mentorship. This portfolio reflects that progression.
+Developing an understanding of virtual machine configuration, resource allocation, and lifecycle management through a simulated VM-building exercise.
+
+[Explore Week 04](week-04/)
+
+## Repository Organization
+
+- **`week-01/` through `week-04/`** — Weekly coursework, labs, and reflections
+- **`assets/screenshots/`** — Supporting evidence from hands-on exercises
+- **`projects/`** — Larger technical projects and future capstone work
+
+## Continuing Development
+
+Alongside CVI, I'm independently preparing for the **CompTIA CySA+ certification**, focusing on threat detection, vulnerability management, security operations, and incident response.
+
+This portfolio is an evolving record of my technical development and will continue to grow as I complete additional labs and projects.
+
+---
+
+**Siri Keyaka**
+
+Cybersecurity Analyst | Security Operations | Incident Response | GRC
