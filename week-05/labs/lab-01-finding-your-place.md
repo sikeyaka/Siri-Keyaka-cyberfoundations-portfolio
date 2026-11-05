@@ -2,47 +2,26 @@
 
 **Student Name:** Siri Keyaka
 
-**Date Completed:**
 
 **Module:** 2 — Networking & Cloud Foundations | **Week:** 5  
-**Submission Path:** `week-05/labs/lab-01-finding-your-place.md`
 
 ---
 
 ## Overview
 
-Module 1 was about the machine in front of you. Module 2 is about everything your machine can *reach* — and The Grid is where you learn to find your way around it. This lab walks you through the four questions every network troubleshooter asks first: *What is my own address? Can I get out of my own neighbourhood? What number is hiding behind that name? And what do these same commands look like on Windows?*
 
-This is a **guided** lab. Every step tells you exactly what to run and exactly what to record — Lab 02 is where you work independently. Take your time, read each output before you paste it, and notice that the numbers you see connect to each other.
+This lab focused on network addressing, connectivity testing, and DNS resolution using Bash and PowerShell. I used commands such as `ip addr`, `ip route`, `ping`, and `dig` to identify my workstation's IP address, subnet mask, and default gateway, test connectivity, and resolve a hostname to its IPv4 address.
 
-**Nothing here can break anything real.** The CLI Simulator is a consequence-free practice space, and every command in this lab only *looks* — none of them change a single setting.
-
----
-
-## Lab Environment / Pre-Lab Check
-
-| Component | Details |
-|---|---|
-| Environment | CyberFoundations CLI Simulator (browser-based, inside the Lab Portal) — no install, no VM, no real terminal required |
-| Shell | Parts A, B, and C use **bash**; Part D uses **PowerShell** |
-| Prerequisite | Week 5, Lessons 1 and 2 completed |
-| Commands used | `ip addr`, `ip route`, `ping`, `dig` (bash) · `ipconfig`, `Resolve-DnsName`, `Test-Connection` (PowerShell) |
-
-**Before you start:** log into the Lab Portal, open **Week 5 → CLI Simulator**, and load the **"The Grid — Finding Your Place"** scenario. You'll see two entries in the list: **The Grid — Finding Your Place (Bash)** (used for Parts A, B, and C) and **The Grid — Finding Your Place (PowerShell)** (used for Part D). Start with the Bash one.
-
-Your simulated workstation on The Grid is called `ivy-workstation`. It sits on the same network segment as several other machines, and it has a way out to the rest of the world. Your first job is to find out what that looks like from the inside.
+I also used PowerShell to perform similar network diagnostics in a Windows environment. Comparing the results helped reinforce how DNS resolution and network connectivity work together, and how the same troubleshooting concepts apply across different operating systems.
 
 ---
 
 ## Part A — Who Am I
 
-Before you can ask whether you can reach anything else, you have to know where you are. On a network, "where you are" is an address — and the machine already knows it. You just have to ask.
 
 ### Step 1 — Read Your Own Address Plate
 
-Run `ip addr` in the bash simulator. This prints every network interface your machine has, along with the address assigned to each one. The interface you care about is `eth0` — that's your wired connection to The Grid.
-
-Command you ran:
+Command ran:
 
 ```
 ip addr
@@ -63,9 +42,8 @@ Output (the full `ip addr` result):
 
 ### Step 2 — Pull Out Your IPv4 Address
 
-Look at the `eth0` section of your output and find the line beginning with `inet`. The number right after it, before the slash, is your **IPv4 address** — the dotted-quad address that identifies this machine on The Grid.
 
-Your IPv4 address:
+IPv4 address:
 
 ```
 10.20.5.42
@@ -73,13 +51,7 @@ Your IPv4 address:
 
 ### Step 3 — Translate the Slash Into a Subnet Mask
 
-The number *after* the slash on that same `inet` line is your **prefix length** — shorthand for the subnet mask. Lesson 1 called the subnet mask the answer to "which addresses are my neighbours?"
-
-A `/24` prefix means the first three of the four numbers identify the network, and only the last number identifies the individual machine. Written the long way, `/24` is the subnet mask **255.255.255.0**.
-
-Record both forms — the prefix you saw, and the mask it translates to.
-
-Your prefix length and the subnet mask it means:
+The prefix length and the subnet mask it means:
 
 ```
 /24 = 255.255.255.0
@@ -87,17 +59,10 @@ Your prefix length and the subnet mask it means:
 
 ### Step 4 — Find the Door Out
 
-Your subnet mask tells you who your neighbours are. The **default gateway** is the address your machine sends traffic to when the destination is *not* a neighbour — the door out of your neighbourhood.
-
-Here's something worth knowing now rather than being surprised by later: `ip addr` does **not** show you the gateway. It only reports the addresses on your interfaces. The gateway lives in a separate place — the machine's routing table — and it takes a second command to read it:
-
 ```
 ip route
 ```
 
-Run it. You'll get a couple of lines, and the one that matters starts with the word `default`. Read it as a sentence: *"anything with no better instructions goes via this address, out of this interface."*
-
-(On Windows this split doesn't exist — `ipconfig` hands you address, mask, and gateway all at once, which you'll see in Part D. Linux separates "what are my addresses" from "where do I send things," and now you know both commands.)
 
 The full `ip route` output:
 
@@ -106,17 +71,13 @@ default via 10.20.5.1 dev eth0
 10.20.5.0/24 dev eth0 proto kernel scope link src 10.20.5.42
 ```
 
-Your default gateway — the address on the `default` line:
+Default gateway — the address on the `default` line:
 
 ```
 10.20.5.1
 ```
 
 ### Step 5 — Say It in a Sentence
-
-Put the three numbers together in plain English, the way you'd say it out loud to a colleague: *"My address is ___, my neighbours are everything that starts with ___, and anything outside that goes through ___."*
-
-Your plain-English summary:
 
 ```
 My workstation's IP address is 10.20.5.42, and devices on the 10.20.5.0/24 network are my local neighbors. Any traffic going outside that network is sent through the default gateway at 10.20.5.1.
@@ -126,17 +87,9 @@ My workstation's IP address is 10.20.5.42, and devices on the 10.20.5.0/24 netwo
 
 ## Part B — Can I Get Out
 
-> **Two-tab workflow.** Keep this worksheet in one browser tab and open the CLI Simulator in a second tab (right-click the link → *Open in new tab*). Run a step in the CLI Simulator tab, switch back here, record it, then go back. Save Progress here as you go — the CLI Simulator does not save your worksheet answers.
-
-You know your own address. Now find out whether anything can hear you. `ping` is the simplest question a network tool can ask: **are you alive, and how long did it take you to answer?** It sends a small packet, waits for a reply, and reports the round trip.
-
-The order here matters, and it's the same order you'll use for the rest of your career: **check the near thing before the far thing.** Your gateway is the nearest thing outside your own machine, so it goes first.
-
 ### Step 1 — Ping Your Gateway
 
-Ping the default gateway address you recorded in Part A, Step 4 — `10.20.5.1`.
-
-Command you ran:
+Command ran:
 
 ```
 ping 10.20.5.1
@@ -158,9 +111,7 @@ rtt min/avg/max/mdev = 1.000/1.150/1.300/0.100 ms
 
 ### Step 2 — Read the Result
 
-Two numbers in that output tell the story. **Packet loss** tells you whether the replies came back at all. **Time** (latency, measured in milliseconds) tells you how long each round trip took.
-
-How many packets you sent, how many came back, and the typical round-trip time:
+How many packets were sent, how many came back, and the typical round-trip time:
 
 ```
 4 packets were sent and all 4 were received, resulting in 0% packet loss. The average round-trip latency was 1.150 ms.
@@ -168,11 +119,7 @@ How many packets you sent, how many came back, and the typical round-trip time:
 
 ### Step 3 — Ping a Machine by Name
 
-> **Run →** `ping foundry-archive.grid.local` · **Look for →** the number on the first line, then the loss and time in the summary · **Record →** the command and the full output below
-
-Now reach a different machine on your own subnet — and this time, use a **name** instead of a number. Ping `foundry-archive.grid.local`. Its address, `10.20.5.20`, starts with the same `10.20.5.` as yours, so it is one of your `/24` neighbours: your workstation reaches it directly, without going through the gateway. (You'll see a host that *is* past the gateway — `cloud-heights.grid.local` — in Lab 02.) (Yes, that's the Foundry District's archive server from Module 1. It's still running, and now you can see it from the network side.)
-
-Command you ran:
+Command ran:
 
 ```
 ping foundry-archive.grid.local
@@ -194,10 +141,6 @@ rtt min/avg/max/mdev = 2.000/2.150/2.300/0.100 ms
 
 ### Step 4 — Note What Ping Quietly Did For You
 
-Look at the very first line of your Step 3 output. You typed a *name*, but ping printed a *number*. Something translated one into the other before a single packet went anywhere — and it did it so fast you'd have missed it if nobody pointed it out.
-
-The number ping showed for `foundry-archive.grid.local`, and its packet loss and latency:
-
 ```
 The hostname foundry-archive.grid.local resolved to 10.20.5.20. All four packets were received with 0% packet loss and an average round-trip time of 2.150 ms. This confirms that the archive server is reachable by its hostname.
 ```
@@ -206,13 +149,9 @@ The hostname foundry-archive.grid.local resolved to 10.20.5.20. All four packets
 
 ## Part C — Name to Number
 
-Part B, Step 4 left a question hanging: *who translated that name?* This part answers it, and then proves the answer is true. This is the most important thing in this lab — don't rush it.
-
 ### Step 1 — Ask the Directory Board Directly
 
-`dig` is the tool that does out loud what ping did silently: it asks the DNS server to turn a name into a number, and it shows you the whole conversation. Run `dig foundry-archive.grid.local`.
-
-Command you ran:
+Command ran:
 
 ```
 dig foundry-archive.grid.local
@@ -239,9 +178,6 @@ foundry-archive.grid.local.  3600 IN A 10.20.5.20
 
 ### Step 2 — Record the A Record
 
-Find the **ANSWER SECTION** in your output. The line there ending in `A` followed by an address is the **A record** — the mapping from the name you asked about to the IPv4 address that name points to.
-
-The name you looked up and the IP address its A record returned:
 
 ```
 Hostname: foundry-archive.grid.local
@@ -250,7 +186,6 @@ IPv4 address (A record): 10.20.5.20
 
 ### Step 3 — Record Who Answered
 
-Now scroll to the bottom of your `dig` output and find the **SERVER** line. This tells you *which machine gave you the answer* and *which port the question went to*. That machine is The Grid's DNS server — the Directory Board from Lesson 2. The port number after the `#` is the standard port for DNS.
 
 The answering server's address and the port number:
 
@@ -261,9 +196,7 @@ Port: 53
 
 ### Step 4 — Prove It Yourself
 
-Here's the test. In Part B you pinged the archive **by name** and got replies. Now ping it **by the number** you just found in the A record — `10.20.5.20` — and compare.
-
-Command you ran:
+Command ran:
 
 ```
 ping 10.20.5.20
@@ -285,39 +218,20 @@ rtt min/avg/max/mdev = 2.000/2.150/2.300/0.100 ms
 
 ### Step 5 — The Aha: The Name and the Number Are the Same Place
 
-Stop and look at what you're holding.
-
-You pinged `foundry-archive.grid.local` and got replies from **10.20.5.20**. You then pinged **10.20.5.20** directly and got the same replies, from the same machine, at the same speed. Two different-looking commands, one single destination.
-
-**The name is not a different thing from the number. The name is a label on the number.** DNS is nothing more than the lookup that swaps one for the other, and you just watched the whole exchange happen — the question (`dig`), the answer (the A record), the machine that answered it (10.20.5.10), and the proof that the answer was correct (identical ping results).
-
-This is why network troubleshooting has a *by name* test and a *by IP* test, and why they are not the same test. Hold onto that. Lab 02 is built entirely on the difference between them.
-
-Write the aha in your own words — what did the two pings prove, and what did `dig` show you in between them?
-
-Your explanation:
+Explanation:
 
 ```
 Both pings reached the same server at 10.20.5.20 and returned identical results, confirming that the hostname and IP address point to the same destination. The dig command showed how DNS translates foundry-archive.grid.local into its IP address using an A record. It also showed that the DNS server at 10.20.5.10 answered the request on port 53.
 ```
 
-### Step 6 — Capture Your Session (OPTIONAL screenshot)
-
-Take a screenshot of your simulator session showing your Part C sequence — the `dig` output and both pings. Name it `cli-grid-address.png`.
-
-**This screenshot is optional this week.** There's no flagship deliverable due in Week 5, so nothing is riding on it. Do it anyway if you can: Week 7's Deliverable 2 will ask for evidence exactly like this, and building the habit now — capture the moment the tool proved something — is genuinely easier than building it under deadline. Treat it as portfolio practice. If you do capture it, the GitHub Commit section below shows you how to upload it and record its filename.
-
 ---
 
 ## Part D — The Windows Side
 
-Every question you asked in Parts A through C has a Windows answer. The words change; the questions don't. Switch to **The Grid — Finding Your Place (PowerShell)** in the scenario list for this part.
 
 ### Step 1 — Your Address, Windows Edition
 
-Run `ipconfig`. Notice that Windows hands you all three numbers in one place — IPv4 address, subnet mask, and default gateway — spelled out in words instead of slash notation.
-
-Command you ran:
+Command ran:
 
 ```
 ipconfig
@@ -338,19 +252,13 @@ Ethernet adapter Ethernet0:
 
 ### Step 2 — Compare the Two Views
 
-Compare your `ipconfig` output to your `ip addr` output from Part A. The values should be identical — same machine, same address plate. What's different is how each tool *presents* it.
-
-One thing `ipconfig` showed more plainly than `ip addr`, and one thing that was the same in both:
-
 ```
 PowerShell's `ipconfig` displays the IPv4 address, subnet mask, and default gateway together, while Bash's `ip addr` shows the network interfaces and uses prefix notation for the subnet mask. Both commands showed the same IPv4 address, 10.20.5.42.
 ```
 
 ### Step 3 — Look Up the Name, Windows Edition
 
-Run `Resolve-DnsName foundry-archive.grid.local`. This is PowerShell's `dig`.
-
-Command you ran:
+Command ran:
 
 ```
 Resolve-DnsName foundry-archive.grid.local
@@ -372,9 +280,7 @@ The IP address it returned:
 
 ### Step 4 — Test Reachability, Windows Edition
 
-Run `Test-Connection foundry-archive.grid.local`. This is PowerShell's `ping`, and it returns its results as a tidy table rather than a running list of replies.
-
-Command you ran:
+Command ran:
 
 ```
 Test-Connection foundry-archive.grid.local
@@ -392,10 +298,6 @@ ivy-workstation foundry-archive.grid.local     10.20.5.20       32       2
 ```
 
 ### Step 5 — Build Your Own Translation Table
-
-You now have both halves of the same toolkit. Fill in the pairs from memory of what you just ran — this table is worth keeping.
-
-Your bash-to-PowerShell pairs (show my address / test reachability / look up a name):
 
 ```
 1. Show my address
@@ -435,67 +337,20 @@ It's important to understand both Bash and PowerShell because different systems 
 
 ---
 
-## Submission Checklist
+### Lab 01 Screenshots
 
-- [x] Full `ip addr` output recorded (Part A, Step 1)
+**Bash: Ping by hostname and DNS lookup**
 
-- [x] IPv4 address recorded (Part A, Step 2)
+![Bash Challenges 4–5](../../assets/screenshots/week-05/cli-grid-address-1.png)
 
-- [x] Prefix length translated to a subnet mask (Part A, Step 3)
+**Bash: DNS results and direct IP ping**
 
-- [x] `ip route` run, output recorded, and default gateway identified (Part A, Step 4)
+![Bash Challenges 5–6](../../assets/screenshots/week-05/cli-grid-address-2.png)
 
-- [x] Address, mask, and gateway summarised in plain English (Part A, Step 5)
+**PowerShell: Network configuration and connectivity**
 
-- [x] Gateway pinged, output recorded, loss and latency read (Part B, Steps 1–2)
+![PowerShell network diagnostics](../../assets/screenshots/week-05/cli-grid-powershell.png)
 
-- [x] `foundry-archive.grid.local` pinged by name, output recorded (Part B, Steps 3–4)
-
-- [x] `dig` run; A record and answering server + port recorded (Part C, Steps 1–3)
-
-- [x] `10.20.5.20` pinged directly and compared to the by-name ping (Part C, Step 4)
-
-- [x] The name-equals-number aha explained in your own words (Part C, Step 5)
-
-- [x] *Optional:* `cli-grid-address.png` captured, uploaded to `assets/screenshots/week-05/`, and its filename recorded (Part C, Step 6)
-
-- [x] `ipconfig`, `Resolve-DnsName`, and `Test-Connection` all run and recorded (Part D)
-
-- [x] bash-to-PowerShell translation table completed (Part D, Step 5)
-
-- [x] All three Analysis Questions answered (minimum sentence counts met)
-
-- [x] This file is committed to your portfolio repo at `week-05/labs/lab-01-finding-your-place.md`
-
----
-
-## GitHub Commit Subsection
-
-This lab's written answers are submitted through the **CyberFoundations Lab Portal**, the same way as Week 4.
-
-1. Go to the CyberFoundations Lab Portal and sign in.
-2. Open **Week 5 → Lab 01: Finding Your Place on the Grid**.
-3. Fill in the worksheet fields — they match the commands, outputs, and questions in this file, in the same order.
-4. Connect your GitHub account if you haven't already (one-time setup), and select your portfolio repo.
-5. Click **Submit to GitHub**. The Portal commits the completed file to `week-05/labs/lab-01-finding-your-place.md` for you.
-
-**📸 OPTIONAL — portfolio practice.** No deliverable depends on this screenshot in Week 5. If you're building the habit ahead of Week 7, here's the full method:
-
-1. Go to your portfolio repository on GitHub.com and navigate to `assets/screenshots/week-05/` (create the folder if this is your first Week 5 screenshot).
-2. Click **Add file → Upload files**, drag in your screenshot, named `cli-grid-address.png` (lowercase, hyphens, no spaces).
-3. Scroll down and click **Commit changes**.
-4. Click the uploaded image's filename to open it and confirm it displays correctly.
-5. Record the filename below so your grader knows to look for it.
-
-The screenshot filename you uploaded:
-
-```
-cli-grid-address-1.png
-cli-grid-address-2.png
-cli-grid-powershell.png
-```
-
-Your screenshot lives in `assets/screenshots/week-05/` in your repository, alongside the rest of your Week 5 evidence. It does not need to be linked inside this worksheet.
 
 ---
 
