@@ -1,64 +1,43 @@
 # Week 5 Notes — The Grid: Addresses, Names, Ports, and Diagnostics
 
-**Student Name:** Siri Keyaka
+## Key Concepts
 
-**Date Completed:**
+- **IP Address:** Identifies a device's network interface and allows communication across networks.
+- **Subnet Mask:** Determines which IP addresses belong to the same local network. A `/24` prefix corresponds to `255.255.255.0`.
+- **Default Gateway:** Routes traffic from the local network to other networks.
+- **Private vs. Public IP Addresses:** Private IPv4 ranges include `10.0.0.0/8`, `172.16.0.0/12`, and `192.168.0.0/16`. Public addresses are globally routable.
+- **DNS:** Translates domain names into IP addresses. NXDOMAIN indicates a nonexistent DNS name, while successful resolution does not guarantee connectivity.
+- **DHCP:** Automatically assigns IP addresses and other network settings through leases.
+- **Ports:** Identify specific network services, including SSH (22), DNS (53), HTTP (80), HTTPS (443), RDP (3389), and SMTP (25).
+- **TCP vs. UDP:** TCP provides reliable, connection-oriented communication, while UDP sends datagrams without guaranteed delivery.
+- **TCP Handshake:** Establishes a connection through SYN → SYN-ACK → ACK, demonstrated in Lab 03.
+- **Network Diagnostics:** `ping` tests ICMP responses, `traceroute` examines network hops, and `dig` performs DNS lookups. Missing responses do not necessarily indicate network failure.
+- **The Ladder Rule:** Check local configuration → gateway → target hostname → target IP → trace the path.
 
-Summarize this week's key concepts in your own words — not copy-pasted definitions.
+## Command Reference
 
-## Key Concepts This Week
+| Task | Bash / Linux | PowerShell |
+|---|---|---|
+| Show IP address | `ip addr` | `ipconfig` |
+| Show default gateway | `ip route` | `Get-NetRoute` |
+| Test reachability | `ping` | `Test-Connection` |
+| Trace network path | `traceroute` | `Test-NetConnection -TraceRoute` |
+| DNS lookup | `dig` | `Resolve-DnsName` |
 
-- IP addresses — the dotted-quad number every device on a network needs (`10.20.5.42` on The Grid)
-- The subnet mask — the answer to "which addresses are my neighbours?" (`/24` = `255.255.255.0`)
-- The default gateway — the door out of your neighbourhood (`10.20.5.1` on The Grid)
-- Private vs public addresses — `10.x`, `172.16–31.x`, and `192.168.x` are *inside* addresses
-- DNS — the Grid's Directory Board: a name goes in, an IP address comes out
-- NXDOMAIN vs a host that resolves but doesn't answer — two different failures with two different causes
-- DHCP — the Address Office: leases, why addresses change, why a laptop "just works" on a new network
-- Ports — the numbered doors on a building: 22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP, 25 SMTP
-- TCP vs UDP — a confirmed conversation vs a shout across the room
-- The TCP handshake — SYN → SYN-ACK → ACK (packets 7, 8 and 9 in Lab 03)
-- The diagnostic toolkit — `ping` (does it answer this test?), `traceroute` (which hops answer?), `dig` (what number is behind that name?). Evidence limits: no ping reply doesn't prove a host is off, and `* * *` means no reply came back, not proof of the exact fault
-- **THE LADDER RULE** — check yourself → check your gateway → check the target by NAME → check the target by IP → trace the path. *Work outward, one rung at a time, and let the evidence pick the culprit.*
+## Understanding Network Configuration
 
-## My Command Table
-
-You learned the same five jobs twice this week — once in bash, once in PowerShell. Fill the pairs in from memory if you can, and check them afterwards. Type straight into the box below — one job per line, e.g. `show my address: ip addr | ipconfig`. This table is worth keeping.
-
-The bash command and its PowerShell equivalent for each job — show my own address, show my default gateway, test reachability, trace the path, look up a name:
-
-```
-Show IP address: ip addr / ipconfig
-Show gateway: ip route / Get-NetRoute
-Test reachability: ping / Test-Connection
-Trace path: traceroute / Test-NetConnection -TraceRoute
-DNS lookup: dig / Resolve-DnsName
-```
-
-## In My Own Words
-
-Your machine has three numbers: an address, a subnet mask, and a default gateway. Explain what each one is for, the way you'd explain it to someone who has never heard those words.
-
-```
 An IP address identifies a device on a network. The subnet mask determines which devices are on the same local network, while the default gateway connects the device to other networks.
-```
 
-What does DNS actually do? Include the difference between a name that comes back "Name or service not known" (NXDOMAIN) and a name that resolves perfectly well to a host that never answers.
+## DNS and Connectivity
 
-```
-DNS translates domain names into IP addresses. NXDOMAIN means the requested name doesn't exist in DNS, while a name that resolves but doesn't respond suggests a connectivity, firewall, or service issue rather than a DNS lookup failure.
+DNS translates domain names into IP addresses. NXDOMAIN means the requested name does not exist in DNS, while a name that resolves but does not respond may indicate a connectivity, firewall, or service issue rather than a DNS lookup failure.
 
-```
+## Ports and Network Security
 
-An IP address gets your traffic to the right building. What does a port number add to that, and why would a defender care how many doors are open?
+An IP address identifies the destination device, while a port identifies the service receiving traffic. Defenders monitor open ports because unnecessary or vulnerable services can create security risks.
 
-```
-An IP address identifies the device, while a port identifies the service receiving traffic. Defenders monitor open ports because unnecessary or vulnerable services can create security risks.
-```
+## The Ladder Rule
 
-Write out THE LADDER RULE — all five rungs, in order — and say why running them in that order matters more than running them fast.
-
-```
 1. Check my own network configuration.
 2. Check the default gateway.
 3. Test the target by hostname.
@@ -66,26 +45,25 @@ Write out THE LADDER RULE — all five rungs, in order — and say why running t
 5. Trace the network path.
 
 Following this order helps narrow down connectivity issues systematically instead of guessing or troubleshooting the wrong component.
-```
 
-What is DHCP, and why does your laptop get an address automatically on a network it has never joined before, while a server like `grid-dns` keeps the same address permanently?
+## DHCP and Address Assignment
 
-```
-DHCP automatically assigns IP addresses and network settings, allowing my laptop to connect without manual configuration. Servers like grid-dns use static addresses or DHCP reservations so other devices can reliably locate them. 
-```
+DHCP automatically assigns IP addresses and network settings, allowing my laptop to connect without manual configuration. Servers like `grid-dns` use static addresses or DHCP reservations so other devices can reliably locate them.
 
----
+## Additional Practice: Traceroute
 
-## Submission Checklist
+I used macOS Terminal to run `traceroute wikipedia.org`. The command continued to its default maximum of 64 hops, with later probes returning `* * *`.
 
-- [x] I summarized each concept in my own words, not copied definitions
+This reinforced that unanswered probes do not necessarily indicate a network outage. Firewalls, filtering, and router configurations can affect diagnostic responses.
 
-- [x] I completed the bash-to-PowerShell command table
+## Key Takeaway
 
-- [x] I answered all five "In My Own Words" prompts
-
-- [x] This file is committed to my portfolio repo at `week-05/notes.md`
+Week 5 strengthened my understanding of network communication, addressing, and troubleshooting. I learned the importance of following a structured diagnostic process and interpreting command output carefully before identifying a potential network issue.
 
 ---
 
 *CyberVisionaries Institute — Cyber Foundations, Tier I*
+
+---
+
+*CyberVisionaries Institute · Cyber Foundations · Tier I*
