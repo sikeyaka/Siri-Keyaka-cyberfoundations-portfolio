@@ -1,202 +1,152 @@
 # Week 6 Lab 01 — Claiming Your Room in Cloud Heights
 
-**Student Name:** Siri Keyaka
-
-**Date Completed:**
-
-**Module:** 2 — Networking & Cloud Foundations | **Week:** 6  
-**Submission Path:** `week-06/labs/lab-01-claiming-your-room.md`
-
----
-
-> ### 🔒 Cloud Heights Security Rule
-> Your Bastion link and Cloud Heights password are **private access credentials**. Never paste either into a worksheet, screenshot, GitHub repository, Circle post, or chat message. When taking screenshots, crop out the browser address bar and all login information.
+**Module:** 2 — Networking & Cloud Foundations  
+**Environment:** Microsoft Azure | Ubuntu 22.04 | Azure Bastion  
+**Focus:** Cloud VM Access, Linux CLI Verification, Golden Images & Recovery
 
 ---
 
 ## Overview
 
-Week 5 was practice. This week the machine is real. Cloud Heights is a live Ubuntu 22.04 server running in Azure, and one of its rooms has **already been reserved for you** — you do not create it, provision it, or pay for it. Your job in this lab is to walk in the front door, prove you are standing inside your own room, and understand where that room came from.
+This lab focused on accessing and verifying a provisioned Ubuntu virtual machine in the Cloud Heights training environment. Using Azure Bastion, I established a browser-based terminal session and verified the machine hostname, active user account, and working directory through Linux commands.
 
-This is a **guided** lab. Every step tells you what to do and what to record. Expect 30–40 minutes.
+The exercise also covered standardized VM deployment, golden images, snapshots, backups, and the importance of controlled access to cloud resources.
 
----
-
-## Lab Environment / Pre-Lab Check
+## Lab Environment
 
 | Component | Details |
 |---|---|
-| Environment | Cloud Heights — live Ubuntu 22.04 VM in Azure, reached through Azure Bastion in your browser |
-| Access | Lab Portal → **My Lab Environment** → your Cloud Heights card |
-| Username | `analyst` |
-| Password | Provided to you separately. Never typed into this worksheet. |
-| Commands used | `hostname`, `whoami`, `pwd` |
-| Auto-shutdown | Your VM stops automatically after 15 minutes of inactivity. A warning with **Keep Working** appears first. |
+| Cloud Platform | Microsoft Azure |
+| Operating System | Ubuntu 22.04 |
+| Remote Access | Azure Bastion |
+| User Account | `analyst` |
+| Command-Line Interface | Bash |
+| Commands Used | `hostname`, `whoami`, `pwd` |
 
-**Before you start:** open **My Lab Environment** in the Portal. If your VM shows **Stopped**, click **Start VM** and wait until the status reads **Running** — this takes a minute or two. Only then click **Open Cloud Heights**.
+## Part A — VM Access and Environment Verification
 
----
+### 1. VM Initialization
 
-## Part A — Walking In
+Accessed the Cloud Heights environment through the CyberFoundations Lab Portal and confirmed that the assigned VM was running before opening the remote session.
 
-### Step 1 — Start the Room
+**VM Status:** Running
 
-In **My Lab Environment**, check your Cloud Heights status. Start the VM if it is stopped and wait for **Running**.
+### 2. Remote Session
 
-The status you saw before you started, and the status you saw after:
+Established a browser-based Ubuntu terminal session through Azure Bastion using the assigned training account.
 
-```
-Before: Unknown. After: Running.
-```
+The session displayed the CyberFoundations training environment welcome message and an interactive Linux command prompt.
 
-### Step 2 — Open Cloud Heights and Sign In
+### 3. Hostname Verification
 
-Click **Open Cloud Heights**. A browser-based session opens through Azure Bastion. Sign in with username `analyst` and the password you were given separately.
-
-**Do not record the password, the link, or any part of the login screen anywhere.**
-
-Describe what you saw once the session opened — what kind of screen greeted you:
-
-```
-A browser-based Ubuntu Linux terminal opened through Azure Bastion, displaying the CyberFoundations training environment welcome message and a command prompt.
-```
-
-### Step 3 — Ask the Machine Its Name
-
-Run:
-```
+**Command:**
+```bash
 hostname
 ```
-Output:
 
-```
+**Output:**
+```text
 cf-student-33
 ```
 
-### Step 4 — Ask Who You Are
+The hostname identified the VM connected to the active session.
 
-Run:
-```
+### 4. User Identity Verification
+
+**Command:**
+```bash
 whoami
 ```
-Output:
 
-```
+**Output:**
+```text
 analyst
 ```
 
-### Step 5 — Ask Where You Are Standing
+The output confirmed that the session was running under the assigned `analyst` account rather than the root account.
 
-Run:
-```
+### 5. Working Directory Verification
+
+**Command:**
+```bash
 pwd
 ```
-Output:
 
-```
+**Output:**
+```text
 /home/analyst
 ```
 
----
+The output confirmed that the current working directory was the assigned user's home directory.
 
-## Part B — What Those Three Answers Prove
+## Part B — Verification Findings
 
-### Step 1 — Read Them as Evidence
+The three commands provided a baseline for confirming the active Linux environment:
 
-Each of those three commands answered a different question: *which machine*, *which identity*, *which location in the filesystem*. Together they are the proof that you are inside your own room and not somebody else's.
+| Command | Verification | Result |
+|---|---|---|
+| `hostname` | Identifies the connected machine | `cf-student-33` |
+| `whoami` | Identifies the active user account | `analyst` |
+| `pwd` | Identifies the current working directory | `/home/analyst` |
 
-Explain, in your own words, what each output proves:
+Together, these results verified the connected VM's hostname, active user identity, and filesystem location.
 
-```
-The hostname command identifies the VM I am connected to, confirming that I am working on my assigned machine. The whoami command verifies that I am logged in under the analyst account rather than as root. The pwd command shows my current location in the filesystem, confirming that I am working within the analyst user's home directory.
-```
+### Screenshot Evidence
 
-### Step 2 — Capture Your Evidence
+The screenshot captures the terminal prompt, all three commands, and their corresponding outputs.
 
-Take a screenshot of your terminal showing the three commands and their outputs.
+![Cloud Heights Terminal Verification](../../assets/screenshots/week-06/bastion-session.png)
 
-**Required filename:** `bastion-session.png`
+**Evidence file:** `assets/screenshots/week-06/bastion-session.png`
 
-**Crop rules — not optional.** The screenshot must show the terminal and prompt. It must **not** show the browser address bar, the Bastion link, any login screen, or any password field. Crop before you upload.
+## Part C — Cloud Provisioning and System Recovery
 
-Upload it to `assets/screenshots/week-06/` in your portfolio repository, then paste its link here:
+### 1. Standardized Golden Images
 
----
+A golden image is a standardized, preconfigured system image used to deploy multiple machines with consistent baseline settings.
 
-## Part C — Where Your Room Came From
+Organizations use golden images to streamline provisioning, reduce configuration errors, and maintain consistency across environments. They also support faster recovery by allowing systems to be rebuilt from a known-good configuration.
 
-### Step 1 — The Golden Image Idea
+### 2. Standardized Deployment and Individual Environments
 
-Every student's Cloud Heights room was built from the **same standardized image** — a known-good snapshot of a configured Ubuntu machine. Nobody hand-built 20 servers. One machine was configured correctly once, captured, and stamped out repeatedly.
+Each Cloud Heights VM begins with the same operating system, baseline configuration, and installed tools.
 
-Explain in your own words what a standardized (golden) image is and why an organization would build one:
+As users work within their assigned environments, files, command histories, and configuration changes become specific to each VM. This allows organizations to maintain standardized deployments while supporting separate working environments.
 
-```
-A golden image is a standardized, preconfigured system image used to deploy multiple machines with the same baseline settings. Organizations use golden images to maintain consistency, reduce configuration errors, and save time during deployment. They also make it easier to rebuild systems from a known-good configuration when necessary.
-```
+## Technical Analysis
 
-### Step 2 — Same Start, Different Rooms
+### 1. Why Restoring a Golden Image Matters
 
-Your room started identical to everyone else's, and from today it starts to diverge as you work in it.
+Restoring a standardized image allows an organization to recover when a system becomes corrupted or its configuration is no longer reliable.
 
-Explain what stays the same across all the rooms and what becomes yours alone:
+For example, if an incorrect configuration change causes a VM to malfunction, rebuilding it from a known-good image may be faster and safer than troubleshooting every issue individually.
 
-```
-Each VM starts with the same operating system, baseline configuration, and installed tools. As I complete labs, my files, command history, and configuration changes become specific to my assigned VM.
-```
+This reduces downtime and helps restore a consistent operating environment.
 
----
+### 2. Snapshots vs. Backups
 
-## Analysis Questions
+A snapshot captures a system's state at a specific point in time, allowing changes to be rolled back.
 
-**Analysis Question 1.** Why does it matter that a standardized image can be *restored*, not just deployed? Describe a realistic situation where restoring from a known-good image is the fastest safe fix. *(Minimum 3 sentences.)*
+Snapshots commonly depend on the original VM or its underlying storage, making them less suitable for protection against complete storage loss.
 
-```
-Restoring a standardized image allows an organization to recover a system when its configuration becomes corrupted or unreliable. For example, if a VM is damaged by an incorrect configuration change, rebuilding it from a known-good image may be faster and safer than troubleshooting every issue individually. This reduces downtime and helps restore a consistent environment.
-```
+A separate backup stores recoverable data independently and provides stronger protection against deletion, corruption, or infrastructure failure.
 
-**Analysis Question 2.** Conceptually, how is a snapshot different from a separate backup? Consider what each one protects against and where each one lives. *(Minimum 3 sentences.)*
+### 3. Cloud Access Provisioning and Least Privilege
 
-```
-A snapshot captures a system's state at a specific point in time, allowing changes to be rolled back. Snapshots commonly depend on the original VM or its underlying storage, so they may not protect against complete storage loss. A separate backup stores recoverable data independently and provides stronger protection against deletion, corruption, or infrastructure failure.
-```
+Organizations typically provision cloud resources centrally and grant employees access based on their responsibilities.
 
-**Analysis Question 3.** Your room was reserved for you rather than created by you. What does that tell you about how cloud access is usually handed out in a real organization, and why would an employer prefer that model? *(Minimum 2 sentences.)*
+This approach supports least-privilege access, consistent security configurations, resource accountability, and cost management.
 
-```
-Companies usually set up cloud resources for their employees and give them access based on what they need for their jobs. This helps maintain security, control costs, and make sure employees only have access to the resources they need.
-```
+## Key Takeaways
 
----
-
-## Submission Checklist
-
-- [x] VM started from My Lab Environment and confirmed **Running** (Part A, Step 1)
-
-- [x] Signed in through Bastion as `analyst` — no credentials recorded anywhere (Part A, Step 2)
-
-- [x] `hostname`, `whoami`, and `pwd` run and outputs recorded (Part A, Steps 3–5)
-
-- [x] Explained what each of the three outputs proves (Part B, Step 1)
-
-- [x] `bastion-session.png` captured, address bar and login data cropped out, uploaded to `assets/screenshots/week-06/` (Part B, Step 2)
-
-- [x] Standardized/golden image explained in your own words (Part C)
-
-- [x] All three Analysis Questions answered (minimum sentence counts met)
-
-- [x] This file is committed to your portfolio repo at `week-06/labs/lab-01-claiming-your-room.md`
+- Established remote access to an Azure-hosted Ubuntu VM through Azure Bastion.
+- Used Linux CLI commands to verify the connected machine, active user, and working directory.
+- Demonstrated the importance of validating the environment before performing administrative or investigative tasks.
+- Explained how golden images support standardized cloud deployments and system recovery.
+- Distinguished VM snapshots from independent backups.
+- Reinforced the importance of centrally managed cloud resources and least-privilege access.
 
 ---
 
-## GitHub Commit Subsection
-
-1. Open **Week 6 → Lab 01: Claiming Your Room in Cloud Heights** in the Lab Portal.
-2. Fill in the worksheet fields — they match this file, in the same order.
-3. Connect your GitHub account if you haven't already, and select your portfolio repo.
-4. Click **Submit to GitHub**. The Portal commits the completed file to `week-06/labs/lab-01-claiming-your-room.md`.
-5. Upload `bastion-session.png` to `assets/screenshots/week-06/` in your repo before you submit.
-
----
 
 *CyberVisionaries Institute · Cyber Foundations · Tier I*
